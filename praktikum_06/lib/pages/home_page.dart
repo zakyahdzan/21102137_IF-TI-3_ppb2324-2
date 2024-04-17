@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '/styles/colors.dart';
 import '/styles/text_style.dart';
@@ -120,55 +121,133 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  Row(
-                    children: [
-                      _trasactionButton('assets/icons/save.png', 'Save Money'),
-                      const SizedBox(
-                        width: 25,
-                      ),
-                      _trasactionButton('assets/icons/pay.png', 'Pay'),
-                    ],
-                  )
+               
                 ],
               ),
             ),
+          Container(
+            margin: EdgeInsets.only(top: 200),
+            child: DraggableScrollableSheet(builder: (context, ScrollController){
+              return Container(
+                decoration: BoxDecoration(color: kWhite,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(40),
+                )
+                ),
+                padding: const EdgeInsets.only(
+                  left: 30,
+                  right: 30,
+                  top: 21,
+                ),
+                child: Stack(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 14 + 4),
+                      child: SingleChildScrollView(controller: ScrollController, child: Column(
+                        children: [
+                          Center(
+                            child: Text('Transaction History', style: kHeading6.copyWith(
+                              color: kLuckyBlue,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 31,
+                          ),
+                          _transactionList(
+                            kTreeGreen.withOpacity(0.2), 
+                            'assets/icon/triangle-up.png', 
+                            'Succes!', 
+                            'February 19 03:25 PM', 
+                            '+ 100.000',
+                          ),
+                          _transactionList(
+                            kTreeGreen.withOpacity(0.2), 
+                            'assets/icon/triangle-up.png', 
+                            'Succes!', 
+                            'February 16 01:25 PM', 
+                            '+ 150.000',
+                          ),
+                          _transactionList(
+                            kOrange.withOpacity(0.2), 
+                            'assets/icon/triangle-down.png', 
+                            'Starbuck Drinks', 
+                            'February 10 12:25 PM', 
+                            '- 110.000',
+                          ),
+                          _transactionList(
+                            kOrange.withOpacity(0.2), 
+                            'assets/icon/triangle-down.png', 
+                            'Payment #invest', 
+                            'February 5 11:05 PM', 
+                            '- 130.000',
+                          ),
+                        ],
+                      ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topCenter,
+                    ),
+                    Container(
+                      height: 4,
+                      width: 49,
+                      color: kEgyptianBlue.withOpacity(0.1),
+                    )
+                  ],
+                ),
+              );
+            }
+            ),
+          ),
           ],
         ),
       ),
     );
   }
 
-  Widget _trasactionButton(String icon, String text) {
-    return Expanded(
-      child: Container(
-        constraints: const BoxConstraints.expand(
-          height: 60,
-        ),
-        decoration: const BoxDecoration(
-          color: kNightBlack,
-          borderRadius: BorderRadius.all(
-            Radius.circular(15),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              icon,
-              width: 24,
+  Widget _transactionList(Color bgColor, String icon, String title, String sub, String amount) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 30),
+      child: Row(
+                            children: [
+                              SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: CircleAvatar(backgroundColor: bgColor,
+                                child: Image(
+                                  image: AssetImage(icon),
+                                  width: 14,
+                                  ),
+                                  ),
+                              ),
+                              SizedBox(width: 10,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [Text(title, 
+                                style: kBody1.copyWith(
+                                  color: kLuckyBlue),
+                                ),
+                                Text('sub', 
+                                style: kCaption.copyWith(
+                                  color: kLightGray),
+                                )
+                                ],
+                              ),
+                              Spacer(),
+                              Text('amount', style: kBody1.copyWith(
+                                color: kLuckyBlue,
             ),
-            const SizedBox(
-              width: 5,
-            ),
-            Text(
-              text,
-              style: kBody1.copyWith(
-                color: kWhite,
-              ),
-            )
-          ],
-        ),
+          ),                     
+        ],
       ),
     );
   }
 }
+
+  
+
+
+ 
