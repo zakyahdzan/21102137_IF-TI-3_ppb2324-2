@@ -55,6 +55,10 @@ class OnBoardingPage extends StatelessWidget {
                       Navigator.pushNamedAndRemoveUntil(
                           context, '/main', (route) => false);
                     },
+                    child: Text(
+                      'Get Started',
+                      style: kButton1.copyWith(color: kWhite),
+                    ),
                     style: TextButton.styleFrom(
                       backgroundColor: kBlueRibbon,
                       padding: const EdgeInsets.symmetric(
@@ -67,11 +71,7 @@ class OnBoardingPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    child: Text(
-                      'Get Started',
-                      style: kButton1.copyWith(color: kWhite),
                     ),
-                  )
                 ],
               ),
             )
