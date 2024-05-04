@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'pages/main_page.dart';
 import 'pages/on_boarding_page.dart';
 
 void main() {
@@ -7,20 +7,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     //debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       title: 'Saving App',
-      theme: ThemeData(
-        //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        //useMaterial3: true,
-      ),
-      home: OnBoardingPage(),
+      routes: {
+        OnBoardingPage.nameRoute: (context) => const OnBoardingPage(),
+        MainPage.nameRoute: (context) => const MainPage(),
+      },
     );
   }
 }
-
